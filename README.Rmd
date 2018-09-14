@@ -12,6 +12,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# deckgl-rlang-examples
+# deckgl for R examples
 
 Examples and data for [deckgl for R](https://github.com/crazycapivara/deckgl)
