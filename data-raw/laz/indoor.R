@@ -23,3 +23,4 @@ data <- "data-raw/laz/indoor.0.1.laz" %>%
 
 saveRDS(data, "data/rds/indoor-scan.rds")
 write_json(data, "data/json/indoor-scan.json")
+
