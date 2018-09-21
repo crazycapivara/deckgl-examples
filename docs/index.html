@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>deckgl for R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<link href="libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="libs/highlightjs-1.1/highlight.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/deckgl-6.1.0/deckgl_.css" rel="stylesheet" />
+<script src="libs/deckgl-6.1.0/deckgl.min.js"></script>
+<script src="libs/deckgl-binding-0.1.4/deckgl.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">deckgl for R</h1>
+
+</div>
+
+
+<div id="d-indoor-scan" class="section level2">
+<h2>3D Indoor Scan</h2>
+<p><code>PointCloudLayer</code></p>
+<div id="htmlwidget-49270046c05d21a2a7a7" style="width:100%;height:480px;" class="deckgl html-widget"></div>
+<script type="application/json" data-for="htmlwidget-49270046c05d21a2a7a7">{"x":{"latitude":37.8,"longitude":-122.45,"zoom":12,"pitch":0,"bearing":0,"initialViewState":{"lookAt":[0,0,0],"distance":"OrbitView.getDistance({boundingBox: [1, 1, 1], fov: 30})","rotationX":0,"rotationOrbit":0,"orbitAxis":"Y","fov":30,"minDistance":0.5,"maxDistance":3,"zoom":1},"views":"new OrbitView()","layers":[{"className":"PointCloudLayer","data":"https://raw.githubusercontent.com/crazycapivara/deckgl-examples/master/data/json/indoor-scan.json","properties":{"id":"point-cloud-layer","coordinateSystem":"COORDINATE_SYSTEM.IDENTITY","getPosition":"d => [d.X, d.Y, d.Z]","getNormal":[0,1,0],"getColor":[255,255,255],"radiusPixels":0.5}}]},"evals":["initialViewState.distance","views","layers.0.properties.coordinateSystem","layers.0.properties.getPosition"],"jsHooks":{"render":[{"code":"() => deckglWidget.element.style.background = 'black'","data":null}]}}</script>
+<p>Data source: <a href="kaarta.com" class="uri">kaarta.com</a></p>
+<pre class="r"><code>library(deckgl)
+
+sample_data &lt;- &quot;https://raw.githubusercontent.com/crazycapivara/deckgl-examples/master/data/json/indoor-scan.json&quot;
+
+properties &lt;- list(
+  coordinateSystem = JS(&quot;COORDINATE_SYSTEM.IDENTITY&quot;),
+  getPosition = JS(&quot;d =&gt; [d.X, d.Y, d.Z]&quot;),
+  getNormal = c(0, 1, 0),
+  getColor = c(255, 255, 255),
+  radiusPixels = 0.5
+)
+
+initial_view_state &lt;- list(
+  lookAt = c(0, 0, 0),
+  distance = JS(&quot;OrbitView.getDistance({boundingBox: [1, 1, 1], fov: 30})&quot;),
+  rotationX = 0,
+  rotationOrbit = 0,
+  orbitAxis = &quot;Y&quot;,
+  fov = 30,
+  minDistance = 0.5,
+  maxDistance = 3,
+  zoom = 1
+)
+
+deckgl(
+  width = &quot;100%&quot;,
+  initialViewState = initial_view_state,
+  views = JS(&quot;new OrbitView()&quot;)
+) %&gt;%
+  add_point_cloud_layer(data = sample_data, properties = properties) %&gt;%
+  onRender(&quot;() =&gt; deckglWidget.element.style.background = &#39;black&#39;&quot;)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

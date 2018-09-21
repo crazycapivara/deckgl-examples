@@ -1,0 +1,20 @@
+---
+title: deckgl for R
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::read_chunk("../examples/point-cloud-layer-indoor-scan.R")
+```
+
+## 3D Indoor Scan
+
+`PointCloudLayer`
+
+```{r point-cloud-layer, echo = FALSE, message = FALSE}
+```
+
+Data source: [kaarta.com](kaarta.com)
+
+```{r point-cloud-layer, eval = FALSE, message = FALSE}
+```
