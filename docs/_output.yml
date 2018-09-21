@@ -1,0 +1,6 @@
+html_document:
+    theme: cosmo
+    mathjax: null
+    self_contained: false
+    lib_dir: libs
+    # css: styles/black.css
